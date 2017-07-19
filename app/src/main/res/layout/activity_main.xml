@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -9,13 +8,15 @@
         <import type="android.view.View" />
 
         <variable
-            name="colorLabelHandler"
-            type="com.github.wtopolski.testingworkshopapp.binding.TextViewBinder" />
+            name="viewModel"
+            type="com.github.wtopolski.testingworkshopapp.MapViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
         tools:context="com.github.wtopolski.testingworkshopapp.MainActivity">
 
         <TextView
@@ -26,9 +27,17 @@
             android:layout_margin="16dp"
             android:padding="16dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-            android:text="@{colorLabelHandler.value}"
-            bind:textColor="@{colorLabelHandler.textColor}"
-            bind:backgroundColor="@{colorLabelHandler.backgroundColor}"/>
+            android:text="@{viewModel.colorLabel.value}"
+            bind:textColor="@{viewModel.colorLabel.textColor}"
+            bind:backgroundColor="@{viewModel.colorLabel.backgroundColor}"/>
+
+        <Button
+            android:id="@+id/clear"
+            style="?borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.clear.onClick()}"
+            android:text="@{viewModel.clear.value, default=Clear}" />
 
     </LinearLayout>
 

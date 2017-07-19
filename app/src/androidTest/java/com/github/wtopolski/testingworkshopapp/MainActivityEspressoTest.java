@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -25,7 +26,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @LargeTest
 public class MainActivityEspressoTest {
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
     public void checkVisibilityOfColorLabel() {
@@ -33,18 +34,24 @@ public class MainActivityEspressoTest {
     }
 
     @Test
-    public void initialStateOfContentColorLabel() {
+    public void initialStateOfColorLabel() {
         onView(withId(R.id.color_label)).check(matches(withText("#FFFFFF")));
+        onView(withId(R.id.color_label)).check(matches(withBackgroundColor("#FFFFFF")));
+        onView(withId(R.id.color_label)).check(matches(withTextColor("#000000")));
     }
 
     @Test
-    public void initialStateOfBackgroundColorLabel() {
-        onView(withId(R.id.color_label)).check(matches(withBackgroundColor("#FF0000")));
+    public void initialStateOfClear() {
+        onView(withId(R.id.clear)).check(matches(withText("Clear")));
     }
 
     @Test
-    public void initialStateOfTextColorLabel() {
-        onView(withId(R.id.color_label)).check(matches(withTextColor("#FFFFFF")));
+    public void clearExecution() {
+        onView(withId(R.id.clear)).perform(click());
+
+        onView(withId(R.id.color_label)).check(matches(withText("#FFFFFF")));
+        onView(withId(R.id.color_label)).check(matches(withBackgroundColor("#FFFFFF")));
+        onView(withId(R.id.color_label)).check(matches(withTextColor("#000000")));
     }
 
     public static Matcher<View> withBackgroundColor(final String expectedHexColor) {
