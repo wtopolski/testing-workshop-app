@@ -16,10 +16,10 @@ https://google.github.io/android-testing-support-library/downloads/espresso-chea
 
 ### Examples
 
-### Check state of single view
+#### Check state of single view
 Simple check of view state can look like this: `onView(withId(R.id.clear)).check(matches(withText("Clear")));`
 
-### Operation on more views
+#### Operation on more views
 When want to check state after some action, it requires more lines. First line executes `click` action on Button widget, second check `colorText` parameter of TextView widget.
 ```
 onView(withId(R.id.clear)).perform(click());
@@ -43,7 +43,7 @@ android.support.test.espresso.AmbiguousViewMatcherException: '(is displayed on t
 Problem views are marked with '****MATCHES****' below.
 ~~~
 
-### Custom Matcher
+### Custom matcher
 When you want to check widget's property which is not suported by default, then create your custom Matcher for that.
 
 ```
