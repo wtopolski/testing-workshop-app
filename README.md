@@ -9,6 +9,10 @@ When want to check state after some action, it requires additional lines. First 
 onView(withId(R.id.clear)).perform(click());
 onView(withId(R.id.color_label)).check(matches(withText("#FFFFFF")));
 ```
+### Cheat sheet
+https://google.github.io/android-testing-support-library/downloads/espresso-cheat-sheet-2.1.0.pdf
+
+![alt tag](https://github.com/wtopolski/testing-workshop-app/blob/master/docs/screen1.png)
 
 ## Custom Matcher
 When you want to check widget's property which is not suported by default, then create your custom Matcher for that.
