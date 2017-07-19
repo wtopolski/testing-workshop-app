@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.github.wtopolski.testingworkshopapp.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/color_label"
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="colorLabelHandler"
+            type="com.github.wtopolski.testingworkshopapp.binding.TextViewBinder" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_margin="16dp"
-        android:padding="16dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        android:background="#FFFFFF"
-        android:text="#FFFFFF" />
+        android:layout_height="match_parent"
+        tools:context="com.github.wtopolski.testingworkshopapp.MainActivity">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/color_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:text="@{colorLabelHandler.value}"
+            bind:textColor="@{colorLabelHandler.textColor}"
+            bind:backgroundColor="@{colorLabelHandler.backgroundColor}"/>
+
+    </LinearLayout>
+
+</layout>

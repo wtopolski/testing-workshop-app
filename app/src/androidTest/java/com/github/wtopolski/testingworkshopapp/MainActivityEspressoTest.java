@@ -33,13 +33,18 @@ public class MainActivityEspressoTest {
     }
 
     @Test
-    public void initialStateOfTextColorLabel() {
+    public void initialStateOfContentColorLabel() {
         onView(withId(R.id.color_label)).check(matches(withText("#FFFFFF")));
     }
 
     @Test
     public void initialStateOfBackgroundColorLabel() {
-        onView(withId(R.id.color_label)).check(matches(withBackgroundColor("#FFFFFF")));
+        onView(withId(R.id.color_label)).check(matches(withBackgroundColor("#FF0000")));
+    }
+
+    @Test
+    public void initialStateOfTextColorLabel() {
+        onView(withId(R.id.color_label)).check(matches(withTextColor("#FFFFFF")));
     }
 
     public static Matcher<View> withBackgroundColor(final String expectedHexColor) {
@@ -52,6 +57,26 @@ public class MainActivityEspressoTest {
             public boolean matchesSafely(TextView widget) {
                 ColorDrawable colorDrawable = (ColorDrawable) widget.getBackground();
                 String hexCurrentColor = String.format("#%06X", (0xFFFFFF & colorDrawable.getColor()));
+                msg = " " + expectedHexColor + " Current: " + hexCurrentColor;
+                return expectedHexColor.equals(hexCurrentColor);
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText(msg);
+            }
+        };
+    }
+
+    public static Matcher<View> withTextColor(final String expectedHexColor) {
+        Checks.checkNotNull(expectedHexColor);
+
+        return new BoundedMatcher<View, TextView>(TextView.class) {
+            private String msg = "";
+
+            @Override
+            public boolean matchesSafely(TextView widget) {
+                String hexCurrentColor = String.format("#%06X", (0xFFFFFF & widget.getCurrentTextColor()));
                 msg = " " + expectedHexColor + " Current: " + hexCurrentColor;
                 return expectedHexColor.equals(hexCurrentColor);
             }
