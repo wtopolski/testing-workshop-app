@@ -54,6 +54,33 @@ public class MainActivityEspressoTest {
         onView(withId(R.id.color_label)).check(matches(withTextColor("#000000")));
     }
 
+    @Test
+    public void redExecution() {
+        onView(withId(R.id.red)).perform(click());
+
+        onView(withId(R.id.color_label)).check(matches(withText("#FF0000")));
+        onView(withId(R.id.color_label)).check(matches(withBackgroundColor("#FF0000")));
+        onView(withId(R.id.color_label)).check(matches(withTextColor("#00FFFF")));
+    }
+
+    @Test
+    public void greenExecution() {
+        onView(withId(R.id.green)).perform(click());
+
+        onView(withId(R.id.color_label)).check(matches(withText("#00FF00")));
+        onView(withId(R.id.color_label)).check(matches(withBackgroundColor("#00FF00")));
+        onView(withId(R.id.color_label)).check(matches(withTextColor("#FF00FF")));
+    }
+
+    @Test
+    public void blueExecution() {
+        onView(withText("Blue")).perform(click());
+
+        onView(withId(R.id.color_label)).check(matches(withText("#0000FF")));
+        onView(withId(R.id.color_label)).check(matches(withBackgroundColor("#0000FF")));
+        onView(withId(R.id.color_label)).check(matches(withTextColor("#FFFF00")));
+    }
+
     public static Matcher<View> withBackgroundColor(final String expectedHexColor) {
         Checks.checkNotNull(expectedHexColor);
 

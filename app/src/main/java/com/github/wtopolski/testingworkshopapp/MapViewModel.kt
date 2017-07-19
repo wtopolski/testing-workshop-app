@@ -13,22 +13,29 @@ class MapViewModel {
     val colorUtil = ColorUtils()
     val colorLabel = TextViewBinder(true, true)
     val clear = ButtonViewBinder(true, true)
+    val red = ButtonViewBinder(true, true)
+    val green = ButtonViewBinder(true, true)
+    val blue = ButtonViewBinder(true, true)
 
     fun onCreate() {
         setupColorLabel(WHITE)
 
         clear.value = "Clear"
+        red.value = "Red"
+        green.value = "Green"
+        blue.value = "Blue"
     }
 
     fun onStart() {
-        compositeDisposable.add(clear.rxClick(AndroidSchedulers.mainThread()).subscribe(this::clearColorLabel))
+        compositeDisposable.add(clear.rxClick(AndroidSchedulers.mainThread()).map { WHITE }.subscribe(this::setupColorLabel))
+        compositeDisposable.add(red.rxClick(AndroidSchedulers.mainThread()).map { RED }.subscribe(this::setupColorLabel))
+        compositeDisposable.add(green.rxClick(AndroidSchedulers.mainThread()).map { GREEN }.subscribe(this::setupColorLabel))
+        compositeDisposable.add(blue.rxClick(AndroidSchedulers.mainThread()).map { BLUE }.subscribe(this::setupColorLabel))
     }
 
     fun onStop() {
         compositeDisposable.clear()
     }
-
-    private fun clearColorLabel(timestamp: Long) = setupColorLabel(WHITE)
 
     private fun setupColorLabel(color: String) {
         val colorInt = Color.parseColor(color)

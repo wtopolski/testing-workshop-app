@@ -11,7 +11,7 @@ class ButtonViewBinder(enabled: Boolean, visibility: Boolean) : TextViewBinder(e
     private val buttonObservable = PublishSubject.create<Long>()
 
     fun rxClick(scheduler: Scheduler): Observable<Long> {
-        return buttonObservable.debounce(250, TimeUnit.MILLISECONDS).observeOn(scheduler)
+        return buttonObservable.debounce(50, TimeUnit.MILLISECONDS).observeOn(scheduler)
     }
 
     fun onClick() {

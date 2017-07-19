@@ -31,13 +31,46 @@
             bind:textColor="@{viewModel.colorLabel.textColor}"
             bind:backgroundColor="@{viewModel.colorLabel.backgroundColor}"/>
 
-        <Button
-            android:id="@+id/clear"
-            style="?borderlessButtonStyle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.clear.onClick()}"
-            android:text="@{viewModel.clear.value, default=Clear}" />
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/clear"
+                style="?borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.clear.onClick()}"
+                android:text="@{viewModel.clear.value, default=Clear}" />
+
+            <Button
+                android:id="@+id/red"
+                style="?borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.red.onClick()}"
+                android:text="@{viewModel.red.value, default=Red}" />
+
+            <Button
+                android:id="@+id/green"
+                style="?borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.green.onClick()}"
+                android:text="@{viewModel.green.value, default=Green}" />
+
+            <Button
+                android:id="@+id/blue"
+                style="?borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.blue.onClick()}"
+                android:text="@{viewModel.blue.value, default=Blue}" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
