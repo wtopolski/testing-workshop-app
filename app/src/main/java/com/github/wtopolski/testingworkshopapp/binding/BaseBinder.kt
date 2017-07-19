@@ -7,18 +7,6 @@ import com.github.wtopolski.testingworkshopapp.BR
 
 open class BaseBinder(private var enabled: Boolean = false, private var visibility: Boolean = false) : BaseObservable() {
 
-    private var clickable = true
-
-    @Bindable
-    fun getClickable(): Boolean {
-        return clickable
-    }
-
-    fun setClickable(clickable: Boolean) {
-        this.clickable = clickable
-        notifyPropertyChanged(BR.clickable)
-    }
-
     @Bindable
     fun getEnabled(): Boolean {
         return enabled
