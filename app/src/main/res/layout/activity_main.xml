@@ -7,8 +7,13 @@
 
     <TextView
         android:id="@+id/color_label"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:gravity="center"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:background="#FFFFFF"
+        android:text="#FFFFFF" />
 
 </LinearLayout>
