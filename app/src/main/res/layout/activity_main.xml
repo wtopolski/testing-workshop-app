@@ -13,6 +13,7 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -68,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> viewModel.blue.onClick()}"
                 android:text="@{viewModel.blue.value, default=Blue}" />
-
 
         </LinearLayout>
 
