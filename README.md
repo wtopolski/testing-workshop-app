@@ -89,7 +89,10 @@ Known Indirect Subclasses of AdapterView: AdapterViewFlipper, AppCompatSpinner, 
 https://github.com/googlesamples/android-testing/tree/master/ui/espresso/RecyclerViewSample
 https://spin.atomicobject.com/2016/04/15/espresso-testing-recyclerviews/
 
-Sample test: Scroll to the position and click on the item
+Sample test: Scroll to the position and click on the item.
+
+**actionOnItemAtPosition()** - Performs a ViewAction on a view at a specific position.
+
 ```
 onView(withId(R.id.recycleView)).perform(RecyclerViewActions.scrollToPosition(12));
 onView(withText("#f5f5dc")).check(matches(isDisplayed()));
@@ -99,9 +102,44 @@ onView(withId(R.id.recycleView)).perform(RecyclerViewActions.actionOnItemAtPosit
 onView(withId(R.id.color_label)).check(matches(withText("#FAFAED")));
 ```
 
-scrollTo() - Scrolls to the matched View.
-scrollToHolder() - Scrolls to the matched View Holder.
-scrollToPosition() - Scrolls to a specific position.
-actionOnHolderItem() - Performs a View Action on a matched View Holder.
-actionOnItem() - Performs a View Action on a matched View.
-actionOnItemAtPosition() - Performs a ViewAction on a view at a specific position.
+#### Custom ViewAction
+Executing any action on selected widget, which is child of list item.
+
+`onView(withId(R.id.recycleView)).perform(RecyclerViewActions.actionOnItemAtPosition(11, viewAction.clickChildViewWithId(R.id.element)));`
+
+**ViewAction**
+```
+public class ClickChildViewAction {
+    ViewAction clickChildViewWithId(final int id) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return null;
+            }
+
+            @Override
+            public String getDescription() {
+                return "Click on a child view with specified id.";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                View v = view.findViewById(id);
+                v.performClick();
+            }
+        };
+    }
+}
+```
+
+**View**
+```
+<android.support.v7.widget.CardView...>
+    <LinearLayout...>
+        <TextView...
+            android:id="@+id/element" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+```
+
+Potential problems could be caused by an async actions like `debounce`, `subscibeOn(background thread)` from RxJava or async binding operation.
