@@ -163,7 +163,7 @@ onView(withId(R.id.recycleView)).perform(RecyclerViewActions.actionOnItemAtPosit
 Espresso.unregisterIdlingResources(idlingResource1);
 
 // Now we wait again
-IdlingResource idlingResource2 = new ElapsedTimeIdlingResource(DateUtils.SECOND_IN_MILLIS * 10);
+IdlingResource idlingResource2 = new ElapsedTimeIdlingResource(DateUtils.SECOND_IN_MILLIS * 2);
 Espresso.registerIdlingResources(idlingResource2);
 
 // Do again
