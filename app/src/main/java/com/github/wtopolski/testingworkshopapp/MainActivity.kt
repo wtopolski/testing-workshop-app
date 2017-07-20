@@ -11,9 +11,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = MapViewModel(this as Context)
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        viewModel = MapViewModel(this as Context) {
+            binding.executePendingBindings()
+        }
+
         binding.viewModel = viewModel
         viewModel.onCreate()
     }

@@ -12,7 +12,7 @@ import com.github.wtopolski.testingworkshopapp.util.ColorationType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class MapViewModel(val context: Context) {
+class MapViewModel(val context: Context, val onExecuteBinding: () -> Unit) {
     val compositeDisposable = CompositeDisposable()
     val colorUtil = ColorUtils()
     val colorLabel = TextViewBinder(true, true)
@@ -63,6 +63,7 @@ class MapViewModel(val context: Context) {
     private fun onListItemClick(newColor: String) {
         val current = colorLabel.value?.toString() ?: WHITE
         setupColorLabel(colorUtil.mix(current, newColor))
+        onExecuteBinding()
     }
 
     private fun setupColorLabel(color: String) {
