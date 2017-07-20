@@ -143,3 +143,30 @@ public class ClickChildViewAction {
 ```
 
 Potential problems could be caused by an async actions like `debounce`, `subscibeOn(background thread)` from RxJava or async binding operation.
+
+## Idling resource 
+
+https://github.com/googlesamples/android-testing/tree/master/ui/espresso/IdlingResourceSample
+
+```
+onView(withId(R.id.blue)).perform(click());
+
+// Now we wait
+IdlingResource idlingResource1 = new ElapsedTimeIdlingResource(DateUtils.SECOND_IN_MILLIS * 2);
+Espresso.registerIdlingResources(idlingResource1);
+
+// Now we do
+ClickChildViewAction viewAction = new ClickChildViewAction();
+onView(withId(R.id.recycleView)).perform(RecyclerViewActions.actionOnItemAtPosition(11, viewAction.clickChildViewWithId(R.id.element)));
+
+Espresso.unregisterIdlingResources(idlingResource1);
+
+// Now we wait again
+IdlingResource idlingResource2 = new ElapsedTimeIdlingResource(DateUtils.SECOND_IN_MILLIS * 10);
+Espresso.registerIdlingResources(idlingResource2);
+
+// Do again
+onView(withId(R.id.color_label)).check(matches(withText("#4145C5")));
+
+Espresso.unregisterIdlingResources(idlingResource2);
+```
