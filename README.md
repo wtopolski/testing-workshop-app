@@ -107,7 +107,7 @@ Executing any action on selected widget, which is child of list item.
 
 `onView(withId(R.id.recycleView)).perform(RecyclerViewActions.actionOnItemAtPosition(11, viewAction.clickChildViewWithId(R.id.element)));`
 
-**ViewAction**
+*ViewAction*
 ```
 public class ClickChildViewAction {
     ViewAction clickChildViewWithId(final int id) {
@@ -132,7 +132,7 @@ public class ClickChildViewAction {
 }
 ```
 
-**View**
+*View*
 ```
 <android.support.v7.widget.CardView...>
     <LinearLayout...>
