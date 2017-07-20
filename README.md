@@ -87,4 +87,21 @@ Known Indirect Subclasses of AdapterView: AdapterViewFlipper, AppCompatSpinner, 
 *"RecyclerView objects work differently than AdapterView objects, so onData() cannot be used to interact with them. To interact with RecyclerViews using Espresso, you can use the `espresso-contrib` package, which has a collection of RecyclerViewActions that can be used to scroll to positions or to perform actions on items."*
 
 https://github.com/googlesamples/android-testing/tree/master/ui/espresso/RecyclerViewSample
+https://spin.atomicobject.com/2016/04/15/espresso-testing-recyclerviews/
 
+Sample test: Scroll to the position and click on the item
+```
+onView(withId(R.id.recycleView)).perform(RecyclerViewActions.scrollToPosition(12));
+onView(withText("#f5f5dc")).check(matches(isDisplayed()));
+
+onView(withId(R.id.clear)).perform(click());
+onView(withId(R.id.recycleView)).perform(RecyclerViewActions.actionOnItemAtPosition(12, click()));
+onView(withId(R.id.color_label)).check(matches(withText("#FAFAED")));
+```
+
+scrollTo() - Scrolls to the matched View.
+scrollToHolder() - Scrolls to the matched View Holder.
+scrollToPosition() - Scrolls to a specific position.
+actionOnHolderItem() - Performs a View Action on a matched View Holder.
+actionOnItem() - Performs a View Action on a matched View.
+actionOnItemAtPosition() - Performs a ViewAction on a view at a specific position.
