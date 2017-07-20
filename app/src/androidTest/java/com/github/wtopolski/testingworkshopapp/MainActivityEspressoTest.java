@@ -1,6 +1,8 @@
 package com.github.wtopolski.testingworkshopapp;
 
 import android.graphics.drawable.ColorDrawable;
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.contrib.RecyclerViewActions;
@@ -9,6 +11,7 @@ import android.support.test.filters.LargeTest;
 import android.support.test.internal.util.Checks;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -115,9 +118,25 @@ public class MainActivityEspressoTest {
     @Test
     public void recycleViewAndCustomViewAction() {
         onView(withId(R.id.blue)).perform(click());
+
+        // Now we wait
+        IdlingResource idlingResource1 = new ElapsedTimeIdlingResource(DateUtils.SECOND_IN_MILLIS * 2);
+        Espresso.registerIdlingResources(idlingResource1);
+
+        // Now we do
         ClickChildViewAction viewAction = new ClickChildViewAction();
         onView(withId(R.id.recycleView)).perform(RecyclerViewActions.actionOnItemAtPosition(11, viewAction.clickChildViewWithId(R.id.element)));
+
+        Espresso.unregisterIdlingResources(idlingResource1);
+
+        // Now we wait again
+        IdlingResource idlingResource2 = new ElapsedTimeIdlingResource(DateUtils.SECOND_IN_MILLIS * 2);
+        Espresso.registerIdlingResources(idlingResource2);
+
+        // Do again
         onView(withId(R.id.color_label)).check(matches(withText("#4145C5")));
+
+        Espresso.unregisterIdlingResources(idlingResource2);
     }
 
     public static Matcher<View> withBackgroundColor(final String expectedHexColor) {
