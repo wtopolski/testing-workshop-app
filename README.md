@@ -73,3 +73,15 @@ public static Matcher<View> withBackgroundColor(final String expectedHexColor) {
   };
 }
 ```
+
+## Lists
+
+### onData()
+*"Instead of using the onView() method, start your search with onData() and provide a matcher against the data that is backing the view you’d like to match. Espresso will do all the work of finding the row in the Adapter object and making the item visible in the viewport."*
+
+*"Note that Espresso scrolls through the list automatically as needed."*
+
+Known Indirect Subclasses of AdapterView: AdapterViewFlipper, AppCompatSpinner, ExpandableListView, Gallery, GridView, ListView, Spinner, StackView
+
+### RecycleView
+*"RecyclerView objects work differently than AdapterView objects, so onData() cannot be used to interact with them. To interact with RecyclerViews using Espresso, you can use the `espresso-contrib` package, which has a collection of RecyclerViewActions that can be used to scroll to positions or to perform actions on items."*
