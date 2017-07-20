@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.github.wtopolski.testingworkshopapp.ListItemViewModel" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/content"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:cardBackgroundColor="@{viewModel.color.backgroundColor}"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/element"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{viewModel.color.value}"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.onClick()}"
+                android:background="?attr/selectableItemBackground"
+                bind:textColor="@{viewModel.color.textColor}"
+                style="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

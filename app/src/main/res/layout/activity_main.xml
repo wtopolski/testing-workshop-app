@@ -72,6 +72,30 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+            android:text="@string/mix_it_with_color"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scrollbars="none"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:visibility="@{viewModel.list.visibility ? View.VISIBLE : View.GONE}"
+            bind:adapter="@{viewModel.list.adapter}"
+            bind:fixedSize="@{viewModel.list.fixedSize}"
+            bind:itemAnimator="@{viewModel.list.itemAnimator}"
+            bind:layoutManager="@{viewModel.list.layoutManager}"
+            bind:itemDecoration="@{viewModel.list.itemDecoration}" />
+
     </LinearLayout>
 
 </layout>
