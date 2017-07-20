@@ -145,9 +145,10 @@ public class ClickChildViewAction {
 Potential problems could be caused by an async actions like `debounce`, `subscibeOn(background thread)` from RxJava or async binding operation.
 
 ## Idling resource 
-
+Real example, which shows that this mechanism forces extra work in tested code (real app, not in tests):
 https://github.com/googlesamples/android-testing/tree/master/ui/espresso/IdlingResourceSample
 
+Very basic example, which depends on trivial assumption like time delay:
 ```
 onView(withId(R.id.blue)).perform(click());
 
