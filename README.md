@@ -29,7 +29,7 @@ onView(withId(R.id.color_label)).check(matches(withText("#FFFFFF")));
 ## Matchers
 
 ### Combining matchers
-We can combine severals matchers using methods `allOf()`, `anyOf()`, `not()`.
+We can combine several matchers using methods `allOf()`, `anyOf()`, `not()`.
 
 `onView(allOf(isDisplayed(), not(instanceOf(Button.class)), not(instanceOf(ViewGroup.class)), withParent(withId(R.id.root)))).check(matches(withText("#FF0000")));`
 
